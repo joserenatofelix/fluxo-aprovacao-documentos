@@ -1,0 +1,135 @@
+/* Estilos gerais para a HomePage */
+.home-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--background-color);
+    padding: 0 20px;
+  }
+  
+  /* Divisão do lado esquerdo com texto e formulário de login */
+  .home-left {
+    max-width: 500px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* Título de boas-vindas */
+  .home-left h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+  }
+  
+  /* Subtítulo de boas-vindas */
+  .home-left h2 {
+    font-size: 1.2rem;
+    color: #777;
+    margin-bottom: 30px;
+  }
+  
+  /* Formulário de login */
+  .form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .input-field:focus {
+    border-color: var(--primary-color);
+    outline: none;
+  }
+  
+  /* Botão de login */
+  button.login-btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 12px 0;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  button.login-btn:hover {
+    background-color: #4d2eac;
+  }
+  
+  button.login-btn:focus {
+    outline: none;
+  }
+  
+  /* Link para cadastro */
+  .register-link {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 20px;
+  }
+  
+  .register-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Divisão do lado direito com imagem ou texto */
+  .home-right {
+    flex: 1;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo do texto ou imagem no lado direito */
+  .home-right p {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    max-width: 80%;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .home-page {
+      flex-direction: column;
+      padding: 20px;
+    }
+  
+    .home-left, .home-right {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .home-right {
+      display: none; /* Opcional: esconder a imagem ou texto do lado direito em telas pequenas */
+    }
+  
+    .home-left {
+      text-align: center;
+    }
+  }
+  

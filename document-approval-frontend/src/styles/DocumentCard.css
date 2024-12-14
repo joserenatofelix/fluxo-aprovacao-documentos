@@ -1,0 +1,123 @@
+/* Estilo geral para o card de documentos */
+.document-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .document-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Cabeçalho do card */
+  .document-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .document-card-header h3 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .document-card-header .status {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #5b35d0;
+  }
+  
+  .document-card-header .status.approved {
+    color: green;
+  }
+  
+  .document-card-header .status.rejected {
+    color: red;
+  }
+  
+  /* Corpo do card */
+  .document-card-body {
+    margin-bottom: 15px;
+  }
+  
+  .document-card-body p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+  }
+  
+  .document-card-body .document-link {
+    font-size: 1.1rem;
+    color: #5b35d0;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+  }
+  
+  .document-card-body .document-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Rodapé do card - Botões de ação */
+  .document-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .document-card-footer button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .document-card-footer button.approve {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .document-card-footer button.approve:hover {
+    background-color: #45a049;
+  }
+  
+  .document-card-footer button.reject {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .document-card-footer button.reject:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .document-card {
+      width: 100%;
+      margin: 10px 0;
+    }
+  
+    .document-card-header h3 {
+      font-size: 1.2rem;
+    }
+  
+    .document-card-body p {
+      font-size: 0.9rem;
+    }
+  
+    .document-card-footer button {
+      font-size: 0.9rem;
+      padding: 6px 12px;
+    }
+  }
+  

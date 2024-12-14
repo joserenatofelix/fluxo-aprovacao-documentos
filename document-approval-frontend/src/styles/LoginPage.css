@@ -1,0 +1,74 @@
+/* Estilo para a tela de login */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.login-box {
+  display: flex;
+  width: 80%;
+  max-width: 800px;
+  background: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.login-form {
+  flex: 1;
+  padding: 20px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.1rem;
+  text-align: center;
+  color: #888;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.login-image {
+  display: none; /* Esconda a imagem em telas menores, se necessário */
+  text-align: center;
+  padding: 20px;
+}
+
+.signup-link {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.signup-link a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
