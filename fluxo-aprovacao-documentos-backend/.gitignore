@@ -1,0 +1,51 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+
+# Build output (caso você tenha algum processo de build no back-end)
+build/
+
+# Test output (se você usar alguma ferramenta de testes, como Mocha ou Jest)
+coverage/
+
+# dotenv environment variable files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# VSCode settings (optional)
+.vscode/
+
+# IDE/Editor directories
+.idea/
+.DS_Store
+
+# Optional npm cache directory
+.npm/
+
+# Optional eslint cache
+.eslintcache
+
+# Serverless directories (se estiver usando serverless framework)
+.serverless/
+
+# Test directory (caso utilize testes específicos)
+tests/
+
+# Jest or Mocha testing files
+*.test.js
+*.spec.js
+
+# Postgres data files (se você tiver dados locais do Postgres)
+pg_data/
+
+# AWS Lambda files (se utilizar AWS Lambda, por exemplo)
+lambda/
