@@ -16,7 +16,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f9f9f9;
+  background-color: cornflowerblue;
   text-align: center;
 }
 
@@ -72,7 +72,7 @@ form {
 
 button {
   background-color: #6a11cb;
-  color: white;
+  color: rgb(228, 19, 19);
   padding: 10px;
   border: none;
   cursor: pointer;
@@ -81,7 +81,7 @@ button {
 }
 
 button.success {
-  background-color: green;
+  background-color: rgb(36, 192, 36);
 }
 
 button.error {
@@ -89,5 +89,5 @@ button.error {
 }
 
 button:active {
-  background-color: green;
+  background-color: rgb(97, 55, 196);
 }

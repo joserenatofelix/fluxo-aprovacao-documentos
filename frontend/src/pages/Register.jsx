@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./../styles/Register.css";
 
 const Register = () => {
+  const formRef = useRef(null);
+
   const handleRegister = (e) => {
     e.preventDefault();
     console.log("Registro enviado");
   };
 
+  const handleClose = () => {
+    formRef.current.reset();
+  };
+
   return (
-    <div>
-      <h1>Registrar</h1>
-      <form onSubmit={handleRegister}>
+    <div className="window">
+      <div className="window-header">
+        <h1>Cadastro de Novo Usuário</h1>
+        <button onClick={handleClose}>X</button>
+      </div>
+      <form ref={formRef} onSubmit={handleRegister}>
         <input type="text" placeholder="Nome completo" required />
         <input type="text" placeholder="Nome de usuário" required />
         <input type="password" placeholder="Senha" required />
