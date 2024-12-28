@@ -1,4 +1,4 @@
-const Document = require('../models/Document');
+const Document = require('../models/documentModel');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 

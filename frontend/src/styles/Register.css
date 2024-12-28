@@ -1,6 +1,6 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #a2b5c5;
+  background-color: red; /* Mudei a cor de fundo para vermelho */
   display: flex;
   justify-content: center;
   align-items: center;
