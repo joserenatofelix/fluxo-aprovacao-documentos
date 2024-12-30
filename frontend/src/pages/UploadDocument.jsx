@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const UploadDocument = () => {
   const handleUpload = (e) => {
@@ -16,6 +17,17 @@ const UploadDocument = () => {
         <button type="submit">Enviar Documento</button>
       </form>
     </div>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        {/* ...existing routes... */}
+        <Route path="/UploadDocument" element={<UploadDocument />} />
+      </Routes>
+    </Router>
   );
 };
 
