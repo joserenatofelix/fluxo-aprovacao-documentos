@@ -1,8 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./../styles/Register.css";
 
 const Register = () => {
   const formRef = useRef(null);
+  const navigate = useNavigate();
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -19,7 +22,10 @@ const Register = () => {
       });
 
       if (response.ok) {
-        console.log("Registro enviado com sucesso");
+        setSuccessMessage("Cadastro de Usuario efetuado com sucesso!");
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000);
         formRef.current.reset();
       } else {
         const errorData = await response.json();
@@ -49,6 +55,7 @@ const Register = () => {
         <input name="role" type="text" placeholder="Função" required />
         <button type="submit">Registrar</button>
       </form>
+      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
     </div>
   );
 };

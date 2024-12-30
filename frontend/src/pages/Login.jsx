@@ -1,21 +1,31 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 import loginImage from "../assets/login.png";
 
 const Login = () => {
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulação de verificação de credenciais
     const username = e.target.username.value;
     const password = e.target.password.value;
-    if (username === "admin" && password === "admin") {
-      setError(false);
-      console.log("Formulário enviado");
-      e.target.querySelector("button").classList.add("success");
-    } else {
+
+    try {
+      const response = await axios.post("http://localhost:5000/login", { username, password });
+      if (response.status === 200) {
+        setError(false);
+        console.log("Login bem-sucedido");
+        e.target.querySelector("button").classList.add("success");
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 1000);
+      }
+    } catch (error) {
       setError(true);
+      console.error("Erro ao fazer login:", error);
       e.target.querySelector("button").classList.add("error");
     }
   };
