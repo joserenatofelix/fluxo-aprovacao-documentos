@@ -1,7 +1,10 @@
 .login-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
 }
 
 @media (min-width: 768px) {
@@ -16,8 +19,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: cornflowerblue;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
+  width: 100%;
+  max-width: 400px;
 }
 
 .login-info {
@@ -39,6 +47,12 @@
   background: linear-gradient(to right, #b589e4, #2575fc);
   color: white;
   padding: 20px;
+  margin-top: 20px;
+}
+
+.login-image img {
+  max-width: 100%;
+  height: auto;
 }
 
 .blinking-text {
@@ -90,4 +104,15 @@ button.error {
 
 button:active {
   background-color: rgb(97, 55, 196);
+}
+
+@media (min-width: 768px) {
+  .login-container {
+    flex-direction: row;
+  }
+
+  .login-image {
+    margin-top: 0;
+    margin-left: 20px;
+  }
 }

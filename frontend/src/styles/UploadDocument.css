@@ -1,6 +1,6 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f3f3f3;
+  background-color: #7589de;
   margin: 0;
   padding: 0;
 }
@@ -74,4 +74,30 @@ body {
 
 .document-item button:hover {
   background-color: #005a9e;
+}
+
+.document-status-container input[type="text"],
+.document-status-container textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.document-status-container textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.reset-password-link {
+  display: block;
+  margin-top: 10px;
+  color: #0078d4;
+  text-decoration: none;
+}
+
+.reset-password-link:hover {
+  text-decoration: underline;
 }

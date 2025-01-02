@@ -5,6 +5,7 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import UploadDocument from './pages/UploadDocument';
 import DocumentStatus from './pages/DocumentStatus';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/upload" element={<UploadDocument />} />
         <Route path="/status" element={<DocumentStatus />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
     </Router>
   );

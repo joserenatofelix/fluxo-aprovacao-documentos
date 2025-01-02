@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../styles/Login.css";
 import loginImage from "../assets/login.png";
 
@@ -50,6 +50,9 @@ const Login = () => {
         {error && <p style={{ color: "red" }}>Credenciais incorretas. Por favor, verifique-as e tente novamente!</p>}
         <p>
           Não é cadastrado? <a href="/register">Clique aqui!</a>
+        </p>
+        <p>
+          <Link to="/reset-password" className="reset-password-link">Redefinir Senha</Link>
         </p>
       </div>
       <div className="login-image">

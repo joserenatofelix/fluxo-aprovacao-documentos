@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Importar useNavigate
-import "./../styles/DocumentStatus.css";
+import "./../styles/UploadDocument.css";
 
 const DocumentStatus = () => {
   const [selectedFile, setSelectedFile] = useState(null);
