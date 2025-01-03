@@ -44,15 +44,57 @@ const Register = () => {
     <div className="window">
       <div className="window-header">
         <h1>Cadastro de Novo Usuário</h1>
-        <button onClick={handleClose}>X</button>
+        <button
+          className="close-button"
+          onClick={handleClose}
+          style={{ fontSize: "20px", padding: "15px 5px", width: "30px", backgroundColor: "#f47207", color: "#f43607" }}
+        >
+          X
+        </button>
       </div>
       <form ref={formRef} onSubmit={handleRegister}>
-        <input name="fullName" type="text" placeholder="Nome completo" required />
-        <input name="username" type="text" placeholder="Nome de usuário" required />
-        <input name="password" type="password" placeholder="Senha" required />
-        <input name="email" type="email" placeholder="E-mail" required />
-        <input name="cpf" type="text" placeholder="CPF" required />
-        <input name="role" type="text" placeholder="Função" required />
+        <input
+          name="fullName"
+          type="text"
+          placeholder="Nome completo"
+          required
+          style={{ width: "400px", borderColor: "blue" }}
+        />
+        <input
+          name="username"
+          type="text"
+          placeholder="Nome de usuário"
+          required
+          style={{ width: "400px", borderColor: "blue" }}
+        />
+        <input
+          name="password"
+          type="password"
+          placeholder="Senha"
+          required
+          style={{ width: "400px", borderColor: "blue" }}
+        />
+        <input
+          name="email"
+          type="email"
+          placeholder="E-mail"
+          required
+          style={{ width: "400px", borderColor: "blue" }}
+        />
+        <input
+          name="cpf"
+          type="text"
+          placeholder="CPF"
+          required
+          style={{ width: "400px", borderColor: "blue" }}
+        />
+        <input
+          name="role"
+          type="text"
+          placeholder="Função"
+          required
+          style={{ width: "400px", borderColor: "blue" }}
+        />
         <button type="submit">Registrar</button>
       </form>
       {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}

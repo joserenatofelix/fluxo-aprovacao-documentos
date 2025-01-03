@@ -1,6 +1,6 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f0f0; /* Cor de fundo mais suave */
+  background-color: #669bac; /* Cor de fundo mais suave */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +10,7 @@ body {
 
 .window {
   background-color: #ffffff;
-  border: 2px solid #0078d7; /* Adicionar borda */
+  border: 5px solid #d74f00; /* Adicionar borda */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 500px; /* Aumentar a largura máxima */
@@ -19,14 +19,14 @@ body {
 }
 
 .window-header {
-  background-color: #0078d7;
+  background-color: #f47207;
   color: #ffffff;
   padding: 15px; /* Aumentar o padding */
   display: flex;
   justify-content: space-between; /* Alterar para space-between */
   align-items: center;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 10px; /* Aumentar o arredondamento */
+  border-top-right-radius: 10px; /* Aumentar o arredondamento */
   position: relative;
 }
 
@@ -48,6 +48,18 @@ body {
   border-radius: 5px;
 }
 
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.close-button:hover {
+  color: red;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -64,17 +76,17 @@ input {
 }
 
 button {
-  padding: 12px; /* Aumentar o padding */
-  font-size: 18px; /* Aumentar o tamanho da fonte */
+  padding: 5px; /* Aumentar o padding */
+  font-size: 5px; /* Aumentar o tamanho da fonte */
   background-color: #0078d7;
-  color: #fff;
+  color: #da4949;
   border: none;
   cursor: pointer;
   border-radius: 5px;
 }
 
 button:hover {
-  background-color: #005a9e;
+  background-color: #7e9e00;
 }
 
 button.success {

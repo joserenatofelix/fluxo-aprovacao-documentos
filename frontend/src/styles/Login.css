@@ -23,7 +23,6 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   background-color: rgb(148, 196, 233);
   padding: 30px; /* Aumentar o padding */
@@ -97,14 +96,19 @@ form {
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 0;
+  margin-bottom: 10px; /* Diminuir a margem inferior */
 }
 
 .form-group input {
   padding: 10px; /* Aumentar o padding */
   font-size: 16px;
   border: 1px solid #ccc; /* Adicionar borda */
-  border-radius: 4px; /* Adicionar border-radius */
+  border-radius: 8px; /* Adicionar border-radius */
+}
+
+.form-group label {
+  text-align: left; /* Alinhar o texto à esquerda */
+  width: 100%; /* Garantir que o label ocupe 100% da largura disponível */
 }
 
 .redefine-password {
@@ -112,7 +116,7 @@ form {
 }
 
 button {
-  background-color: #6a11cb;
+  background-color: #5a0fbf;
   color: white; /* Alterar a cor do texto */
   padding: 10px; /* Aumentar o padding */
   border: none;
@@ -136,7 +140,7 @@ button.error {
 }
 
 button:active {
-  background-color: rgb(97, 55, 196);
+  background-color: #5a0fbf;
 }
 
 @media (min-width: 768px) {
@@ -158,4 +162,33 @@ button:active {
 .aprovacao-title {
   font-size: 1.5em; /* Definir o tamanho da fonte para "Aprovação de Documentos" */
   color: #555; /* Definir a cor para "Aprovação de Documentos" */
+}
+
+h3 {
+  /* Adicione os estilos desejados para o h3 aqui */
+  margin-bottom: 10px; /* Diminuir a margem inferior */
+  color: #5a0fbf;
+  font-size: 1.5em;
+}
+
+p {
+  margin-bottom: 5px; /* Diminuir a margem inferior */
+}
+
+.reset-password-link {
+  margin-bottom: 5px; /* Diminuir a margem inferior */
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 5px;
+  top: 35%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 20px; /* Definir largura do ícone */
+  height: 20px; /* Definir altura do ícone */
 }

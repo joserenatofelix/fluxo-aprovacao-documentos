@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "../styles/DocumentStatus.css";
 
 const DocumentStatus = () => {
   const [documents, setDocuments] = useState([]);
@@ -7,8 +7,13 @@ const DocumentStatus = () => {
 
   useEffect(() => {
     if (selectedArea) {
-      fetch(`http://localhost:5000/documents?area=${selectedArea}`)
-        .then((response) => response.json())
+      fetch(`http://localhost:5000/uploads/${selectedArea}/documents`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
         .then((data) => setDocuments(data))
         .catch((error) => console.error("Erro ao buscar documentos:", error));
     }
@@ -33,13 +38,22 @@ const DocumentStatus = () => {
       .catch((error) => console.error("Erro ao assinar documento:", error));
   };
 
+  const getStatusColor = (status, dueDate) => {
+    const currentDate = new Date();
+    const expirationDate = new Date(dueDate);
+    if (status === "ok") return "green";
+    if (status === "pendente") return "orange";
+    if (currentDate > expirationDate) return "red";
+    return "gray";
+  };
+
   return (
     <div className="document-status-container">
       <h1>Status dos Documentos</h1>
       <p>Aqui você verá os documentos separados por área.</p>
       <select value={selectedArea} onChange={handleAreaChange} required>
         <option value="">Selecione a área</option>
-        <option value="Administracao">Administração</option>
+        <option value="Administração">Administração</option>
         <option value="Aeronautica">Aeronáutica</option>
         <option value="Engenharia">Engenharia</option>
         <option value="RH">Recursos Humanos</option>
@@ -48,10 +62,12 @@ const DocumentStatus = () => {
       <div className="documents-list">
         {documents.map((doc) => (
           <div key={doc.id} className="document-item">
-            <a href={`http://localhost:5000/uploads/${doc.area}/${doc.filename}`} target="_blank" rel="noopener noreferrer">
+            <a href={`http://localhost:5000/uploads/${selectedArea}/${doc.filename}`} target="_blank" rel="noopener noreferrer">
               {doc.filename}
             </a>
-            <p>Status: {doc.status}</p>
+            <div className="status-indicators">
+              <div className={`status-dot ${getStatusColor(doc.status, doc.dueDate)}`}></div>
+            </div>
             {doc.status === "pendente" && (
               <button onClick={() => handleSign(doc.id)}>Assinar</button>
             )}
