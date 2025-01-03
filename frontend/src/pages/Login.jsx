@@ -34,8 +34,8 @@ const Login = () => {
     <div className="login-container">
       <div className="login-form">
         <h1 className="blinking-text" style={{ textAlign: "center" }}>Aprovação de Documentos</h1>
-        <h1>LOGIN</h1>
         <p>Seja bem-vindo de volta!!</p>
+        <h1>LOGIN</h1>        
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="username">Nome de usuário</label>
