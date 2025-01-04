@@ -38,6 +38,11 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.weather-image {
+  max-width: 100%;
+  height: auto;
+}
+
 .documents-list {
   margin-top: 20px;
 }
