@@ -7,7 +7,22 @@ body {
 
 .document-status-container {
   text-align: center;
-  padding: 20px;
+  padding: 30px;
+  background-color: #7caecb;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(231, 60, 60, 0.1);
+  max-width: 600px;
+  margin: 50px auto; /* Ajuste adicional da margem superior */
+}
+
+.document-status-container h1 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.document-status-container p {
+  font-size: 16px;
+  color: #666;
 }
 
 .document-status-container form {
@@ -44,6 +59,7 @@ body {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  width: 100%; /* Adicione esta linha */
 }
 
 .documents-list {
@@ -83,7 +99,7 @@ body {
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  width: 100%;
+  width: 95%; /* Certifique-se de que esta linha está presente */
 }
 
 .document-status-container textarea {
@@ -100,4 +116,18 @@ body {
 
 .reset-password-link:hover {
   text-decoration: underline;
+}
+
+.document-status-container .back-button {
+  background-color: #003366; /* Azul escuro */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px; /* Distância entre os botões */
+}
+
+.document-status-container .back-button:hover {
+  background-color: #002244; /* Azul mais escuro */
 }

@@ -5,6 +5,8 @@ import "./../styles/UploadDocument.css";
 const DocumentStatus = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedArea, setSelectedArea] = useState("");
+  const [documentName, setDocumentName] = useState(""); // Novo estado para Nome do Documento
+  const [documentDescription, setDocumentDescription] = useState(""); // Novo estado para Descrição do Documento
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate(); // Inicializar useNavigate
 
@@ -16,12 +18,22 @@ const DocumentStatus = () => {
     setSelectedArea(e.target.value);
   };
 
+  const handleDocumentNameChange = (e) => {
+    setDocumentName(e.target.value);
+  };
+
+  const handleDocumentDescriptionChange = (e) => {
+    setDocumentDescription(e.target.value);
+  };
+
   const handleuploads = (e) => {
     e.preventDefault();
-    if (selectedFile && selectedArea) {
+    if (selectedFile && selectedArea && documentName && documentDescription) {
       const formData = new FormData();
       formData.append("file", selectedFile);
       formData.append("area", selectedArea);
+      formData.append("name", documentName);
+      formData.append("description", documentDescription);
 
       fetch(`http://localhost:5000/uploads/${selectedArea}`, {
         method: "POST",
@@ -37,6 +49,8 @@ const DocumentStatus = () => {
           console.log("Arquivo enviado com sucesso:", data);
           setSelectedFile(null);
           setSelectedArea("");
+          setDocumentName("");
+          setDocumentDescription("");
           setErrorMessage("");
           document.querySelector('input[type="file"]').value = null;
         })
@@ -53,8 +67,8 @@ const DocumentStatus = () => {
 
   return (
     <div className="document-status-container">
-      <h1>uploads de Documentos</h1>
-      <p>Aqui você verá os documentos separados por área.</p>
+      <h1>Uploads de Documentos</h1>
+      <p>"Selecione a área desejada e anexe o documento."</p>
       <form onSubmit={handleuploads}>
         <select value={selectedArea} onChange={handleAreaChange} required>
           <option value="">Selecione a área</option>
@@ -64,22 +78,28 @@ const DocumentStatus = () => {
           <option value="RH">Recursos Humanos</option>
           <option value="TI">Tecnologia da Informação</option>
         </select>
+        <input
+          type="text"
+          placeholder="Nome do Documento"
+          value={documentName}
+          onChange={handleDocumentNameChange}
+          required
+        />
+        <textarea
+          placeholder="Descrição do Documento"
+          value={documentDescription}
+          onChange={handleDocumentDescriptionChange}
+          required
+        />
         <input type="file" onChange={handleFileChange} required />
         <button type="submit">Enviar Documento</button>
       </form>
-      {selectedFile && (
-        <div className="file-preview">
-          <h2>Visualização do Documento</h2>
-          <p>Nome: {selectedFile.name}</p>
-          <p>Tamanho: {selectedFile.size} bytes</p>
-        </div>
-      )}
       {errorMessage && (
         <div className="error-message">
           <p>{errorMessage}</p>
         </div>
       )}
-      <button onClick={handleBackToDashboard}>Voltar para o Dashboard</button> {/* Botão para voltar */}
+      <button className="back-button" onClick={handleBackToDashboard}>Voltar para o Dashboard</button>
     </div>
   );
 };

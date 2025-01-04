@@ -6,7 +6,6 @@ const Dashboard = () => {
   const [documents, setDocuments] = useState([]);
   const [selectedArea, setSelectedArea] = useState("");
   const [weather, setWeather] = useState(null);
-  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     if (selectedArea) {
@@ -46,7 +45,7 @@ const Dashboard = () => {
   const getWeatherImage = (condition) => {
     switch (condition) {
       case "clear_day":
-        return "dia.png";
+        return "soldia.png";
       case "clear_night":
         return "noite.png";
       case "cloud":
@@ -58,17 +57,9 @@ const Dashboard = () => {
     }
   };
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.body.classList.toggle("dark-mode", !darkMode);
-  };
-
   return (
     <>
       <Navbar />
-      <button onClick={toggleDarkMode}>
-        {darkMode ? "Modo Claro" : "Modo Escuro"}
-      </button>
       <h1>Bem-vindo ao Dashboard</h1>
       <div className="dashboard-container">
         {weather && (
