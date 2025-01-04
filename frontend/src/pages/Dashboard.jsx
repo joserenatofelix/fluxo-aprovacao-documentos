@@ -5,6 +5,7 @@ import "./../styles/Dashboard.css";
 const Dashboard = () => {
   const [documents, setDocuments] = useState([]);
   const [selectedArea, setSelectedArea] = useState("");
+  const [weather, setWeather] = useState(null);
 
   useEffect(() => {
     if (selectedArea) {
@@ -14,6 +15,13 @@ const Dashboard = () => {
         .catch((error) => console.error("Erro ao buscar documentos:", error));
     }
   }, [selectedArea]);
+
+  useEffect(() => {
+    fetch("https://api.hgbrasil.com/weather?woeid=455912&format=json-cors")
+      .then((response) => response.json())
+      .then((data) => setWeather(data.results))
+      .catch((error) => console.error("Erro ao buscar dados do tempo:", error));
+  }, []);
 
   const handleAreaChange = (e) => {
     setSelectedArea(e.target.value);
@@ -34,37 +42,38 @@ const Dashboard = () => {
       .catch((error) => console.error("Erro ao assinar documento:", error));
   };
 
+  const getWeatherImage = (condition) => {
+    switch (condition) {
+      case "clear_day":
+        return "dia.png";
+      case "clear_night":
+        return "noite.png";
+      case "cloud":
+        return "nublado.png";
+      case "rain":
+        return "chuvoso.png";
+      default:
+        return "default.png";
+    }
+  };
+
   return (
     <>
       <Navbar />
+      <h1>Bem-vindo ao Dashboard</h1>
       <div className="dashboard-container">
-        <h1>Bem-vindo ao Dashboard</h1>
-        <p>Selecione uma opção no menu acima.</p>
-        <div className="document-status">
-          <h2>Status dos Documentos</h2>
-          <p>Aqui você verá os documentos separados por área.</p>
-          <select value={selectedArea} onChange={handleAreaChange} required>
-            <option value="">Selecione a área</option>
-            <option value="Administracao">Administração</option>
-            <option value="Aeronautica">Aeronáutica</option>
-            <option value="Engenharia">Engenharia</option>
-            <option value="RH">Recursos Humanos</option>
-            <option value="TI">Tecnologia da Informação</option>
-          </select>
-          <div className="documents-list">
-            {documents.map((doc) => (
-              <div key={doc.id} className="document-item">
-                <a href={`http://localhost:5000/uploads/${doc.area}/${doc.filename}`} target="_blank" rel="noopener noreferrer">
-                  {doc.filename}
-                </a>
-                <p>Status: {doc.status}</p>
-                {doc.status === "pendente" && (
-                  <button onClick={() => handleSign(doc.id)}>Assinar</button>
-                )}
-              </div>
-            ))}
+        {weather && (
+          <div className="weather-info">
+            <p>{new Date().toLocaleString()}</p>
+            <h2>Tempo em {weather.city_name}</h2>
+            <p>Temperatura: {weather.temp}°C</p>
+            <p>Condição: {weather.description}</p>
+            <img
+              src={`/path/to/images/${getWeatherImage(weather.condition_slug)}`}
+              alt={weather.description}
+            />
           </div>
-        </div>
+        )}
       </div>
     </>
   );
