@@ -1,9 +1,0 @@
-const express = require('express');
-const app = express();
-// ...existing code...
-const PORT = process.env.PORT || 5000; // Altere 5001 para 5000
-// ...existing code...
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-// ...existing code...

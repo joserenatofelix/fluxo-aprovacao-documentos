@@ -6,7 +6,7 @@ const path = require("path");
 const { Sequelize, DataTypes } = require("sequelize");
 
 const app = express();
-const PORT = process.env.PORT || 5001; // Altere de 5000 para 5001
+const port = 5000;
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -166,6 +166,6 @@ app.post('/uploads/:area', upload.single('file'), (req, res) => {
   res.json({ message: 'Arquivo enviado com sucesso!' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
 });

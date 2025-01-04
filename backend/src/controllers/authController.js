@@ -29,9 +29,3 @@ exports.login = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
-
-exports.resetPassword = async (req, res) => {
-  const { email } = req.body;
-  // Lógica para redefinir a senha
-  res.status(200).send('Instruções para redefinir a senha foram enviadas para o seu email.');
-};
