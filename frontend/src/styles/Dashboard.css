@@ -67,3 +67,20 @@ body {
 .document-item button:hover {
   background-color: #005a9e;
 }
+
+/* Adicionando estilos para o modo escuro */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark-mode .dashboard-container {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode button {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+/* Adicione mais estilos conforme necessário */
