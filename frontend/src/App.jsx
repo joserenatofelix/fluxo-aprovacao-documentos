@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import UploadDocument from './pages/UploadDocument';
 import DocumentStatus from './pages/DocumentStatus';
 import ResetPassword from './pages/ResetPassword';
+import ResetPasswordForm from './pages/ResetPasswordForm'; // Importação da nova página
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/upload" element={<UploadDocument />} />
         <Route path="/status" element={<DocumentStatus />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/reset-password-form" element={<ResetPasswordForm />} /> {/* Nova rota */}
       </Routes>
     </Router>
   );

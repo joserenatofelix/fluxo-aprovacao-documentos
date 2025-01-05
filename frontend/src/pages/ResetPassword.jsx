@@ -1,40 +1,41 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "../styles/ResetPassword.css";
-import logoImage from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import "./../styles/ResetPassword.css";
 
 const ResetPassword = () => {
   const [username, setUsername] = useState("");
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleResetRequest = async (e) => {
     e.preventDefault();
-    // Lógica para enviar solicitação de redefinição de senha
-    console.log("Redefinir senha para:", username);
+    try {
+      await axios.post("http://localhost:5000/reset-password", { username });
+      setMessage("Solicitação de redefinição de senha enviada com sucesso.");
+      setTimeout(() => {
+        setUsername("");
+        navigate("/reset-password-form");
+      }, 2000);
+    } catch (error) {
+      setMessage("Erro ao solicitar redefinição de senha.");
+    }
   };
 
   return (
-    <div className="form-container">
-      <img src={logoImage} alt="Logo" className="logo" />
-      <form onSubmit={handleSubmit} className="form">
-        <div className="form-group">
-          <label htmlFor="username">Nome de usuário</label>
-          <div className="input-container">
-            <i className="user-icon"></i>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Digite seu nome de usuário"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-        </div>
-        <button type="submit" className="form-button">Redefinir senha</button>
+    <div className="reset-container">
+      <h2>Redefinir Senha</h2>
+      <form onSubmit={handleResetRequest}>
+        <input
+          type="text"
+          placeholder="Digite seu nome de usuário"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <button type="submit">Solicitar Redefinição</button>
       </form>
-      <p>
-        <Link to="/login" className="cancel-link">Cancelar</Link>
-      </p>
+      {message && <p>{message}</p>}
     </div>
   );
 };

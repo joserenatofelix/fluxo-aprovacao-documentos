@@ -4,6 +4,8 @@ const cors = require("cors");
 const multer = require("multer");
 const path = require("path");
 const { Sequelize, DataTypes } = require("sequelize");
+const crypto = require("crypto"); // Para gerar tokens de redefinição
+const nodemailer = require("nodemailer"); // Para envio de e-mails
 
 const app = express();
 const port = 5000;
@@ -162,10 +164,97 @@ app.post("/documents/:id/sign", async (req, res) => {
   }
 });
 
+app.post("/reset-password", async (req, res) => {
+  try {
+    const { username } = req.body;
+    const user = await User.findOne({ where: { username } });
+
+    if (user) {
+      // Lógica para enviar email de redefinição de senha
+      res.status(200).json({ message: "Solicitação de redefinição de senha enviada com sucesso." });
+    } else {
+      res.status(404).json({ error: "Usuário não encontrado." });
+    }
+  } catch (error) {
+    console.error("Erro ao enviar solicitação de redefinição de senha:", error);
+    res.status(500).json({ error: "Erro ao enviar solicitação de redefinição de senha." });
+  }
+});
+
 app.post('/uploads/:area', upload.single('file'), (req, res) => {
   res.json({ message: 'Arquivo enviado com sucesso!' });
 });
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
+});
+
+
+// Configuração do transporte de e-mails (substitua pelos seus dados)
+const transporter = nodemailer.createTransport({
+  service: "gmail", // Altere para o serviço de e-mail desejado
+  auth: {
+    user: "seuemail@gmail.com", // Seu e-mail
+    pass: "suasenha", // Sua senha ou token de aplicativo
+  },
+});
+
+// Adicionar campo "resetToken" ao modelo User se ainda não existir
+(async () => {
+  if (!User.rawAttributes.resetToken) {
+    await sequelize.getQueryInterface().addColumn("Users", "resetToken", {
+      type: DataTypes.STRING,
+      allowNull: true,
+    });
+  }
+})();
+
+// Endpoint para solicitar redefinição de senha
+app.post("/reset-password", async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ where: { email } });
+
+    if (user) {
+      const resetToken = crypto.randomBytes(20).toString("hex");
+      user.resetToken = resetToken;
+      await user.save();
+
+      const resetLink = `http://localhost:3000/reset-password-form?token=${resetToken}`;
+      await transporter.sendMail({
+        from: "seuemail@gmail.com",
+        to: email,
+        subject: "Redefinição de Senha",
+        text: `Clique no link para redefinir sua senha: ${resetLink}`,
+      });
+
+      res.status(200).json({ message: "E-mail de redefinição de senha enviado." });
+    } else {
+      res.status(404).json({ error: "Usuário não encontrado." });
+    }
+  } catch (error) {
+    console.error("Erro ao solicitar redefinição de senha:", error);
+    res.status(500).json({ error: "Erro ao solicitar redefinição de senha." });
+  }
+});
+
+// Endpoint para redefinir a senha com base no token
+app.post("/reset-password/confirm", async (req, res) => {
+  try {
+    const { token, newPassword } = req.body;
+    const user = await User.findOne({ where: { resetToken: token } });
+
+    if (user) {
+      user.password = newPassword; // Certifique-se de usar hash de senha em produção
+      user.resetToken = null;
+      await user.save();
+
+      res.status(200).json({ message: "Senha redefinida com sucesso." });
+    } else {
+      res.status(404).json({ error: "Token inválido ou expirado." });
+    }
+  } catch (error) {
+    console.error("Erro ao redefinir senha:", error);
+    res.status(500).json({ error: "Erro ao redefinir senha." });
+  }
 });
