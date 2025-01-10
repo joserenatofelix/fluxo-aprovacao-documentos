@@ -35,7 +35,7 @@ const DocumentStatus = () => {
       formData.append("name", documentName);
       formData.append("description", documentDescription);
 
-      fetch(`http://localhost:5000/uploads/${selectedArea}`, {
+      fetch(`http://localhost:5000/upload/${selectedArea}`, { // Corrigir o endpoint
         method: "POST",
         body: formData,
       })
@@ -72,7 +72,7 @@ const DocumentStatus = () => {
       <form onSubmit={handleuploads}>
         <select value={selectedArea} onChange={handleAreaChange} required>
           <option value="">Selecione a área</option>
-          <option value="Administracao">Administração</option>
+          <option value="Admin">Administração</option>
           <option value="Aeronautica">Aeronáutica</option>
           <option value="Engenharia">Engenharia</option>
           <option value="RH">Recursos Humanos</option>
