@@ -8,8 +8,11 @@
     ],
     "routes": [
         {
-            "src": "(.*)",
+            "src": "/(.*)",
             "dest": "src/app.js"
         }
-    ]
+    ],
+    "engines": {
+        "node": "16.x"
+    }
 }
