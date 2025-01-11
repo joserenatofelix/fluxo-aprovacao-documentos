@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./../styles/Register.css";
+import backIcon from "../assets/back.png"; // Importar o ícone de voltar
 
 const Register = () => {
   const formRef = useRef(null);
@@ -43,11 +44,17 @@ const Register = () => {
   return (
     <div className="window">
       <div className="window-header">
+        <img
+          src={backIcon}
+          alt="Voltar"
+          onClick={() => navigate("/login")}
+          className="back-icon"
+        />
         <h1>Cadastro de Novo Usuário</h1>
         <button
           className="close-button"
           onClick={handleClose}
-          style={{ fontSize: "20px", padding: "15px 5px", width: "30px", backgroundColor: "#f47207", color: "#f43607" }}
+          style={{ fontSize: "16px", padding: "18px 25px", width: "30px", backgroundColor: "#9f4b40", color: "#f0eae6" }}
         >
           X
         </button>

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import visibleIcon from "../assets/Visible.png";
+import closedIcon from "../assets/closed.png";
+import "./ResetPasswordForm.css"; // Importar o arquivo CSS
 
 const ResetPasswordForm = () => {
   const location = useLocation();
@@ -10,6 +13,8 @@ const ResetPasswordForm = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,20 +57,36 @@ const ResetPasswordForm = () => {
           onChange={(e) => setPasswordReceived(e.target.value)}
           required
         />
-        <input
-          type="password"
-          placeholder="Digite a nova senha"
-          value={newPassword}
-          onChange={(e) => setNewPassword(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Repita a nova senha"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
+        <div className="password-input-container">
+          <input
+            type={showNewPassword ? "text" : "password"}
+            placeholder="Digite a nova senha"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            required
+          />
+          <img
+            src={showNewPassword ? visibleIcon : closedIcon}
+            alt="Mostrar senha"
+            onClick={() => setShowNewPassword(!showNewPassword)}
+            className="password-toggle-icon"
+          />
+        </div>
+        <div className="password-input-container">
+          <input
+            type={showConfirmPassword ? "text" : "password"}
+            placeholder="Repita a nova senha"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+          <img
+            src={showConfirmPassword ? visibleIcon : closedIcon}
+            alt="Mostrar senha"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            className="password-toggle-icon"
+          />
+        </div>
         <button type="submit">Alterar Senha</button>
       </form>
       {message && <p>{message}</p>}

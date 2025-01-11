@@ -97,6 +97,13 @@ button.error {
   background-color: #dc3545; /* Vermelho para erro */
 }
 
+.back-icon {
+  cursor: pointer;
+  width: 40px; /* Aumentar a largura */
+  height: 40px; /* Aumentar a altura */
+  margin-right: 10px;
+}
+
 @media (max-width: 600px) {
   .window {
     padding: 20px;
