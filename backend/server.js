@@ -277,6 +277,10 @@ app.get('/health', (req, res) => {
   res.status(200).send('OK');
 });
 
+app.get('/', (req, res) => {
+  res.send('Servidor backend está funcionando!');
+});
+
 app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
+  console.log(`Servidor backend rodando em http://localhost:${port}`);
 });
