@@ -251,8 +251,9 @@ app.post("/change-password", async (req, res) => {
   try {
     const { username, passwordReceived, newPassword } = req.body;
 
-    if (!username) {
-      return res.status(400).json({ error: "O campo username é obrigatório." });
+    if (!username || !passwordReceived || !newPassword) {
+      console.log("Dados recebidos:", req.body); // Log para depuração
+      return res.status(400).json({ error: "Todos os campos são obrigatórios." });
     }
 
     const user = await User.findOne({ where: { username } });

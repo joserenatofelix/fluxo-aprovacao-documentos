@@ -5,6 +5,7 @@ import axios from "axios";
 const ResetPasswordForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [username, setUsername] = useState(location.state?.username || "");
   const [passwordReceived, setPasswordReceived] = useState(location.state?.passwordReceived || "");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -20,6 +21,7 @@ const ResetPasswordForm = () => {
 
     try {
       await axios.post("http://localhost:5000/change-password", {
+        username,
         passwordReceived,
         newPassword,
       });
@@ -36,6 +38,13 @@ const ResetPasswordForm = () => {
     <div className="reset-form-container">
       <h2>Alterar Senha</h2>
       <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Digite o nome de usuário"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
         <input
           type="text"
           placeholder="Digite a senha recebida"
